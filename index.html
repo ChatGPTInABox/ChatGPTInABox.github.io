@@ -45,11 +45,15 @@
     };
 
     document.getElementById('clear-btn').onclick = () => {
-      localStorage.clear();
-      chatHistory = [];
-      renderChat();
-      alert('Cleared all data!');
-    };
+  localStorage.removeItem('apiKey');
+  localStorage.removeItem('model');
+  localStorage.removeItem('chatHistory');
+  chatHistory = [];
+  document.getElementById('api-key').value = '';
+  document.getElementById('model').value = '';
+  renderChat();
+  alert('Cleared all data!');
+};
 
     async function sendMessage() {
       const apiKey = localStorage.getItem('apiKey');
