@@ -4,15 +4,58 @@
   <meta charset="UTF-8">
   <title>ChatGPT On Your Terms</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 10px; }
-    input, button, select { padding: 8px; margin: 5px 0; box-sizing: border-box; }
-    #chat-box { border: 1px solid #ccc; height: 300px; overflow-y: auto; padding: 5px; margin: 10px 0; background: #fafafa; }
-    .message { margin: 5px 0; }
-    .user { font-weight: bold; }
-    .assistant { color: green; }
-    #input-row { display: flex; gap: 5px; }
-    #user-input { flex: 1; font-size: 14px; }
-    #send-btn { flex: 0 0 auto; width: 80px; font-size: 14px; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 10px;
+      background-color: black;
+      color: blue;
+    }
+    input, button, select {
+      padding: 8px;
+      margin: 5px 0;
+      box-sizing: border-box;
+      border: 2px solid red;
+      background-color: black;
+      color: blue;
+    }
+    button {
+      cursor: pointer;
+    }
+    #chat-box {
+      border: 2px solid red;
+      height: 300px;
+      overflow-y: auto;
+      padding: 5px;
+      margin: 10px 0;
+      background: black;
+    }
+    .message {
+      margin: 5px 0;
+    }
+    .user {
+      font-weight: bold;
+      color: blue;
+    }
+    .assistant {
+      color: green;
+    }
+    #input-row {
+      display: flex;
+      gap: 5px;
+    }
+    #user-input {
+      flex: 1;
+      font-size: 14px;
+    }
+    #send-btn {
+      flex: 0 0 auto;
+      width: 80px;
+      font-size: 14px;
+      color: blue;
+      background-color: black;
+    }
   </style>
 </head>
 <body>
@@ -32,7 +75,6 @@
   </div>
 
   <script>
-    // Load saved API key, model, and chat
     document.getElementById('api-key').value = localStorage.getItem('apiKey') || '';
     document.getElementById('model').value = localStorage.getItem('model') || '';
     let chatHistory = JSON.parse(localStorage.getItem('chatHistory') || '[]');
@@ -45,15 +87,15 @@
     };
 
     document.getElementById('clear-btn').onclick = () => {
-  localStorage.removeItem('apiKey');
-  localStorage.removeItem('model');
-  localStorage.removeItem('chatHistory');
-  chatHistory = [];
-  document.getElementById('api-key').value = '';
-  document.getElementById('model').value = '';
-  renderChat();
-  alert('Cleared all data!');
-};
+      localStorage.removeItem('apiKey');
+      localStorage.removeItem('model');
+      localStorage.removeItem('chatHistory');
+      chatHistory = [];
+      document.getElementById('api-key').value = '';
+      document.getElementById('model').value = '';
+      renderChat();
+      alert('Cleared all data!');
+    };
 
     async function sendMessage() {
       const apiKey = localStorage.getItem('apiKey');
@@ -65,7 +107,6 @@
       }
       if (!userText.trim()) return;
 
-      // Add user message to history
       chatHistory.push({ role: 'user', content: userText });
       renderChat();
       document.getElementById('user-input').value = '';
